@@ -5,8 +5,9 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { BrowserRouter,	Route} from 'react-router-dom'
 
-import Login from './container/login/login.js'
-import Register from './container/register/register.js'
+import Login from './container/login/login'
+import Register from './container/register/register'
+import AuthRoute from './component/authroute/authroute'
 import reducers from './reducer'
 import './config'
 
@@ -14,13 +15,19 @@ const store = createStore(reducers, compose(
 	applyMiddleware(thunk),
 	window.devToolsExtension?window.devToolsExtension():f=>f
 ))
+function Boss(){
+	return <h2>BOSSyemi</h2>
+}
 
 ReactDom.render(
 	(<Provider store={store}>
 		<BrowserRouter>
          <div>
+		 	 <AuthRoute/>
              <Route path='/login' component={Login}></Route>
              <Route path='/register' component={Register}></Route>
+			 <Route path='/boss' component={Boss}></Route>
+
          </div>
 		</BrowserRouter>
 	</Provider>),
