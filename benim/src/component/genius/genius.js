@@ -3,7 +3,6 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {getUserList} from '../../redux/chatuser.redux'
 import UserCard from '../usercard/usercard'
-
 @connect(
 	state=>state.chatuser,
 	{getUserList}

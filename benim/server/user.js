@@ -7,13 +7,12 @@ const User = model.getModel('user')
 const _filter = {'pwd':0,'__v':0}
 
 Router.get('/list',function(req, res){
+	const { type } = req.query
 	// User.remove({},function(e,d){})
-	const { type } = req.query	
 	User.find({type},function(err,doc){
-		return res.json({code:0,data:doc})		
+		return res.json({code:0,data:doc})
 	})
 })
-
 Router.post('/update',function(req,res){
 	const userid = req.cookies.userid
 	if (!userid) {
@@ -28,7 +27,6 @@ Router.post('/update',function(req,res){
 		return res.json({code:0,data})
 	})
 })
-
 Router.post('/login', function(req,res){
 	const {user, pwd} = req.body
 	User.findOne({user,pwd:md5Pwd(pwd)},_filter,function(err,doc){
