@@ -18,9 +18,10 @@ const initState = {
 export function chat(state=initState, action){
 	switch(action.type){
 		case MSG_LIST:
-			return {...state,users:action.payload.users,chatmsg:action.payload.msgs,unread:action.payload.msgs.filter(v=>!v.read).length}
+			return {...state,users:action.payload.users,chatmsg:action.payload.msgs,unread:action.payload.msgs.filter(v=>!v.read&&v.to==action.payload.userid).length}
         case MSG_RECV:
-            return {...state,chatmsg:[...state.chatmsg,action.payload],unread:state.unread+1}
+            const n = action.payload.to==action.userid?1:0
+            return {...state,chatmsg:[...state.chatmsg,action.payload],unread:state.unread+n}
         
 		// // case MSG_RECV:
 		// case MSG_READ:
@@ -29,8 +30,8 @@ export function chat(state=initState, action){
 	}
 }
 
-function msgList(msgs, users){
-	return {type:MSG_LIST,payload:{msgs,users}}
+function msgList(msgs, users, userid){
+	return {type:MSG_LIST,payload:{msgs,users,userid}}
 }
 function msgRecv(msg,userid){
 	return {userid, type:MSG_RECV, payload:msg}
@@ -58,7 +59,7 @@ export function getMsgList(){
 		axios.get('/user/getmsglist')
 			.then(res=>{
 				if (res.status==200 && res.data.code==0) {
-					// const userid = getState().user._id
+					const userid = getState().user._id
 					dispatch(msgList(res.data.msgs,res.data.users))
 				}
 			})
