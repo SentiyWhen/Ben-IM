@@ -38,6 +38,7 @@
     "postcss-loader": "2.0.6",
     "promise": "8.0.1",
     "prop-types": "^15.6.0",
+    "rc-queue-anim": "^1.4.1",
     "react": "^16.0.0-rc.2",
     "react-dev-utils": "^4.0.1",
     "react-dom": "^16.0.0-rc.2",
@@ -115,10 +116,17 @@
   },
   "eslintConfig": {
     "extends": "react-app",
-    "rules":{
-      "eqeqeq":["off"],
-      "jsx-a11y/accessible-emoji":["off"],
-      "semi":["warn","never"]
+    "rules": {
+      "eqeqeq": [
+        "off"
+      ],
+      "jsx-a11y/accessible-emoji": [
+        "off"
+      ],
+      "semi": [
+        "warn",
+        "never"
+      ]
     }
   },
   "proxy": "http://localhost:9093"
