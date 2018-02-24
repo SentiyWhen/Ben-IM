@@ -1,10 +1,12 @@
-const express = require('express')
+// const express = require('express')
+import express from 'express'
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const model = require('./model')
 const Chat = model.getModel('chat')
-
 const path =  require('path')
+// import {renderToString,renderToStaticMarkup} from 'react-dom/server'
+
 
 const app = express()
 // work with express
@@ -34,7 +36,6 @@ app.use(function(req, res, next){
 	if(req.url.startsWith('/user/')||req.url.startsWith('/static/')){
 		return next()
 	}
-	console.log('shenme:',path.resolve('build/index.html'))
 	return res.sendFile(path.resolve('build/index.html'))
 })
 app.use('/',express.static(path.resolve('build')))
