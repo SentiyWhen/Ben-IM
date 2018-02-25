@@ -1,5 +1,5 @@
-// const express = require('express')
-import express from 'express'
+const express = require('express')
+// import express from 'express'
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const model = require('./model')
